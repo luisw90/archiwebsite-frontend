@@ -1,19 +1,24 @@
-import React from "react";
+import React, { FC } from "react";
 
-export const Header = () => {
+type HeaderProps = {
+  createDropdown: (event: any) => void;
+};
+export const Header: FC<HeaderProps> = ({ createDropdown }) => {
   return (
-    <>
+    <div className="header__container">
       <div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
+        <div className="header__titles">logo</div>
       </div>
-      <div>
-        <div>test</div>
-        <div>test</div>
-        <div>test</div>
+      <div className="header__info-container">
+        <button onClick={createDropdown} className="header__button">
+          create
+        </button>
       </div>
-      ;
-    </>
+      <div className="header__info-container">
+        <div className="header__titles">projects</div>
+        <div className="header__titles">search</div>
+        <div className="header__titles">test</div>
+      </div>
+    </div>
   );
 };
