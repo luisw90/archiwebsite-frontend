@@ -3,18 +3,18 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Articles } from "../src/components/Articles";
 import { Header } from "./components/Header";
-import { ArchImages } from "./Types";
-import { getArchiImages } from "./api/api_calls";
+import { ArchData } from "./Types";
+import { getArchData } from "./api/api_calls";
 import { Create } from "./components/Create";
 
 function App() {
-  const [images, setImages] = useState<ArchImages[]>([]);
+  const [images, setImages] = useState<ArchData[]>([]);
   const [dropdown, setDropdown] = useState(false);
   useEffect(() => {
     try {
       const getRandomUser = async () => {
-        const data = await getArchiImages();
-        setImages(data);
+        const data = await getArchData();
+        //setImages(data);
       };
       getRandomUser();
     } catch (err) {

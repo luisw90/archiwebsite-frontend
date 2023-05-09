@@ -1,10 +1,16 @@
 import axios from "axios";
 
-export const getArchiImages = async () => {
-  const response = await axios(
-    `https://api.unsplash.com/search/photos?page=1&query=architecture&client_id=5237d1231297337d4db4bd521d6710d44e32dfa0f6824f00d2788f9e503fb510`
-  );
-  return response.data.results;
+// export const getArchData = async () => {
+//   const response = await axios(
+//     `https://api.unsplash.com/search/photos?page=1&query=architecture&client_id=5237d1231297337d4db4bd521d6710d44e32dfa0f6824f00d2788f9e503fb510`
+//   );
+//   return response.data.results;
+// };
+
+export const getArchData = async () => {
+  const response = await axios.get("http://localhost:3001/api/arch");
+  console.log(response);
+  //return response;
 };
 
 // export const saveItem = (item: UserItem, userid: string) => {
@@ -26,6 +32,6 @@ export const getArchiImages = async () => {
 // }
 
 // export const getSavedItems = async (userid: string) => {
-//   const response = await axios.get(`http://localhost:3001/users/${userid}`)
+//   const response = await axios.get(`http://localhost:11/users/${userid}`)
 //   return response
 // }

@@ -1,17 +1,16 @@
 import React, { FC } from "react";
-import { ArchImages } from "../Types";
+import { ArchData } from "../Types";
 
 type ArchImageProps = {
-  images: ArchImages[];
+  images: ArchData[];
 };
 export const Articles: FC<ArchImageProps> = ({ images }) => {
   return (
     <div className="grid__container">
       {images &&
-        images.map((data: ArchImages) => {
-          const image = data.urls;
+        images.map((data: ArchData) => {
           return (
-            <div key={image.regular} className="article__container">
+            <div key={data.id} className="article__container">
               <div className="article__button-container">
                 <button className="article__button">
                   <img
@@ -23,8 +22,8 @@ export const Articles: FC<ArchImageProps> = ({ images }) => {
                 <button className="article__button">X</button>
               </div>
 
-              <img className="article__image" src={image.regular} alt="" />
-              <p className="article__title">Siberian Husky</p>
+              <img className="article__image" src={data.image} alt="" />
+              <p className="article__title">{data.title}</p>
             </div>
           );
         })}
