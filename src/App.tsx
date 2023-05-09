@@ -4,19 +4,19 @@ import "./App.css";
 import { Articles } from "../src/components/Articles";
 import { Header } from "./components/Header";
 import { ArchData } from "./Types";
-import { getArchData } from "./api/api_calls";
+import { getArchItems } from "./api/api_calls";
 import { Create } from "./components/Create";
 
 function App() {
-  const [images, setImages] = useState<ArchData[]>([]);
+  const [projects, setProjects] = useState<ArchData[]>([]);
   const [dropdown, setDropdown] = useState(false);
   useEffect(() => {
     try {
-      const getRandomUser = async () => {
-        const data = await getArchData();
-        //setImages(data);
+      const getData = async () => {
+        const data = await getArchItems();
+        setProjects(data);
       };
-      getRandomUser();
+      getData();
     } catch (err) {
       console.log(err);
     }
@@ -39,7 +39,7 @@ function App() {
         {dropdown === true && <Create />}
       </header>
       <main>
-        <Articles images={images} />
+        <Articles projects={projects} />
       </main>
     </div>
   );

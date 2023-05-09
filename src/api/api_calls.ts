@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ArchData } from "../Types";
 
 // export const getArchData = async () => {
 //   const response = await axios(
@@ -7,31 +8,38 @@ import axios from "axios";
 //   return response.data.results;
 // };
 
-export const getArchData = async () => {
+export const getArchItems = async () => {
   const response = await axios.get("http://localhost:3001/api/arch");
-  console.log(response);
-  //return response;
+  return response.data;
 };
 
-// export const saveItem = (item: UserItem, userid: string) => {
-//   return axios
-//     .post(`http://localhost:3001/users/${userid}`, item)
-//     .catch(function (error) {
-//       console.error(error)
-//     })
-// }
+export const getOneArchItem = async (id: string) => {
+  const response = await axios.get(`http://localhost:3001/api/arch/${id}`);
+  return response.data;
+};
 
-// export const deleteItem = (userid: string, itemid: string) => {
-//   return axios
-//     .delete(`http://localhost:3001/users/${userid}`, {
-//       data: { itemid: itemid }
-//     })
-//     .catch(function (error) {
-//       console.error(error)
-//     })
-// }
+export const createArchItem = (item: ArchData) => {
+  return axios
+    .post("http://localhost:3001/api/arch/", item)
+    .catch(function (error) {
+      console.error(error);
+    });
+};
 
-// export const getSavedItems = async (userid: string) => {
-//   const response = await axios.get(`http://localhost:11/users/${userid}`)
-//   return response
-// }
+export const updateArchItem = (item: ArchData, id: string) => {
+  return axios
+    .post("http://localhost:3001/api/arch/${id}", item)
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
+export const deleteArchItem = (id: string) => {
+  return axios
+    .delete(`http://localhost:3001/api/arch/${id}`, {
+      data: { id: id },
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};

@@ -6,6 +6,7 @@
   --minimum-width: 500px;
   --ratio: 1/0.95;
   --header-height: 60px;
+  --createdropdown-height: 240px;
 }
 
 body {
@@ -34,16 +35,26 @@ body {
 
 .header__titles {
   font-family: "Akzidenz-roman";
+  font-size: 1em;
+  opacity: 0.8;
+}
+
+.header__button-container {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  top: 20px;
+  width: 100%;
 }
 
 .header__button {
-  display: flex;
-  align-self: center;
-  align-items: center;
-  position: absolute;
   border: none;
   background-color: transparent;
   font-family: "Akzidenz-roman";
+  font-size: 1em;
+  opacity: 0.8;
+  border-bottom: 0.1px solid;
+  width: 90;
 }
 
 .header__info-container {
@@ -59,7 +70,7 @@ body {
 
 .article__container {
   aspect-ratio: var(--ratio);
-  object-fit: contain; /* "contain" to see full original image, "cover" to fill space with truncating, "fill" to stretch */
+  object-fit: contain;
   width: 100%;
 
   border: none;
@@ -112,6 +123,7 @@ body {
   object-fit: cover;
   padding-inline: 120px;
   padding-block: 120px;
+  animation: fadeInOnly 1.5s;
 }
 
 .create__container {
@@ -121,16 +133,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 10px;
-  animation: fadeIn 1.5s;
+  height: var(--createdropdown-height);
 }
 
 .fadeInTarget {
   animation: fadeIn 1.5s;
-}
-
-.fadeOutTarget {
-  animation: fadeOut 1.5s;
 }
 
 @keyframes fadeIn {
@@ -139,30 +146,44 @@ body {
     opacity: 0;
   }
   100% {
-    height: 140px;
+    height: calc(var(--createdropdown-height) + 27px);
     opacity: 1;
   }
 }
-@keyframes fadeOut {
-  100% {
-    height: 150px;
-    opacity: 1;
-  }
+
+@keyframes fadeInOnly {
   0% {
-    height: 0px;
     opacity: 0;
   }
+  100% {
+    opacity: 1;
+  }
 }
+
 .create__input {
+  margin-top: 5px;
+  font-family: "Akzidenz-roman";
   width: 300px;
   border: none;
+  padding-inline: 5px;
+  padding-block: 5px;
+  outline: 0.1px solid rgb(144, 144, 144);
+}
+
+.create__input-description {
+  margin-top: 5px;
+  font-family: "Akzidenz-roman";
+  width: 300px;
+  border: none;
+  height: 100px;
+  padding-inline: 5px;
+  padding-block: 5px;
   outline: 0.1px solid rgb(144, 144, 144);
 }
 
 .create__titles {
   opacity: 0.7;
   font-size: 0.9em;
-  padding-bottom: 5px;
   font-family: "Akzidenz-roman";
 }
 
@@ -180,4 +201,52 @@ body {
   background-color: rgb(178, 178, 178);
   color: white;
   cursor: pointer;
+}
+
+.create-image__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 27px;
+}
+.custom-file-upload {
+  font-size: 0.9em;
+  opacity: 0.7;
+  background-color: transparent;
+  border: none;
+  outline: 0.1px solid rgb(144, 144, 144);
+
+  padding-inline: 10px;
+  padding-block: 5px;
+  cursor: pointer;
+  text-align: center;
+  width: 120px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.hidden {
+  display: none;
+  animation: fadeIn 1.5s;
+}
+
+.create-image__inner-container {
+  height: 100px;
+  aspect-ratio: 1/1;
+  border: none;
+  outline: 0.1px solid rgb(144, 144, 144);
+  cursor: pointer;
+  margin-bottom: 10px;
+  animation: fadeInOnly 1.5s;
+}
+
+.create__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
