@@ -126,7 +126,12 @@ export const Articles: FC<ArchImageProps> = ({
               style={{ opacity: 1 }}
               onSubmit={(e) => {
                 setEditSettings("");
-                handleUpdateSubmit(e, inputs, editimageName);
+                let image = editimageName;
+                if (image === "") {
+                  image = data.image;
+                }
+                handleUpdateSubmit(e, inputs, image);
+                setEditImageName("");
               }}
             >
               <label className="create__titles">

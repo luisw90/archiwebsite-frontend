@@ -1,6 +1,11 @@
 import axios from "axios";
 import { ArchData } from "../Types";
 
+export const getArchTeam = async () => {
+  const response = await axios.get("http://localhost:3001/api/team");
+  return response.data;
+};
+
 export const getArchItems = async () => {
   const response = await axios.get("http://localhost:3001/api/arch");
   return response.data;

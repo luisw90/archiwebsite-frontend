@@ -11,8 +11,12 @@ import {
   deleteArchItem,
 } from "./api/api_calls";
 import { Create } from "./components/Create";
+import { Projectlist } from "./components/Projectlist";
+import { Studio } from "./components/Studio";
+import { Contact } from "./components/Contact";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState<string>("home");
   const [projects, setProjects] = useState<ArchData[]>([]);
   const [dropdown, setDropdown] = useState(false);
   useEffect(() => {
@@ -26,6 +30,10 @@ function App() {
       console.log(err);
     }
   }, []);
+
+  const changePage = (page: string) => {
+    setCurrentPage(page);
+  };
 
   const handleCreateSubmit = async (
     e: React.FormEvent,
@@ -99,17 +107,22 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Header createDropdown={createDropdown} />
+        <Header createDropdown={createDropdown} changePage={changePage} />
         {dropdown === true && (
           <Create handleCreateSubmit={handleCreateSubmit} />
         )}
       </header>
       <main>
-        <Articles
-          handleDelete={handleDelete}
-          handleUpdateSubmit={handleUpdateSubmit}
-          projects={projects}
-        />
+        {currentPage === "home" && (
+          <Articles
+            handleDelete={handleDelete}
+            handleUpdateSubmit={handleUpdateSubmit}
+            projects={projects}
+          />
+        )}
+        {currentPage === "projectlist" && <Projectlist projects={projects} />}
+        {currentPage === "studio" && <Studio />}
+        {currentPage === "contact" && <Contact />}
       </main>
     </div>
   );

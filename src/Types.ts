@@ -6,7 +6,14 @@ type ArchData = {
   image: string;
 };
 
-export type { ArchData };
+type ArchTeam = {
+  _id?: string;
+  name: string;
+  profession: string;
+  email: string;
+};
+
+export type { ArchData, ArchTeam };
 
 // type ArchImages = {
 //   urls: {
