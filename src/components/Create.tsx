@@ -1,11 +1,23 @@
-import React, { useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 
-export const Create = () => {
-  const [input, setInput] = useState("");
+type CreateProps = {
+  handleCreateSubmit: (
+    event: any,
+    inputs: { title: string; description: string },
+    editimage: string
+  ) => void;
+};
+export const Create: FC<CreateProps> = ({ handleCreateSubmit }) => {
+  const [inputs, setInputs] = useState({
+    id: "",
+    title: "",
+    description: "",
+  });
   const [image, setImage] = useState<string>("");
+  const [editimageName, setEditImageName] = useState<string>("");
 
   const userImage = useRef<HTMLDivElement>(null);
-  const handleImage = (files: FileList | null) => {
+  const changeImage = (files: FileList | null) => {
     if (files) {
       const fileRef = files[0];
       const fileType: string = fileRef.type || "";
@@ -14,12 +26,19 @@ export const Create = () => {
         const reader = new FileReader();
         reader.readAsBinaryString(fileRef);
         reader.onload = (ev: any) => {
-          //uploadedImageName.current!.innerHTML = files[0].name;
-          //setFile(files[0]);
+          setEditImageName(files[0].name);
           setImage(`data:${fileType};base64,${btoa(ev.target.result)}`);
         };
       }
     }
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
   };
 
   return (
@@ -29,7 +48,7 @@ export const Create = () => {
           <img className="create__image" src={image} />
         </div>
         <label className="custom-file-upload">
-          <input type="file" onChange={(e) => handleImage(e.target.files)} />
+          <input type="file" onChange={(e) => changeImage(e.target.files)} />
           Choose image
         </label>
       </div>
@@ -38,16 +57,34 @@ export const Create = () => {
         id="dropdownTarget"
         className="create__container"
         style={{ opacity: 1 }}
+        onSubmit={(e) => {
+          if (inputs.title && inputs.description && editimageName) {
+            handleCreateSubmit(e, inputs, editimageName);
+          }
+        }}
       >
         <label className="create__titles">
           Title:
           <br></br>
-          <input className="create__input" />
+          <input
+            type="title"
+            name="title"
+            required
+            onChange={handleInputChange}
+            value={inputs.title}
+            className="create__input"
+          />
         </label>
         <label className="create__titles">
           Description:
           <br></br>
-          <textarea className="create__input-description" />
+          <textarea
+            name="description"
+            required
+            onChange={handleInputChange}
+            value={inputs.description}
+            className="create__input-description"
+          />
         </label>
         <button className="create__button" type="submit">
           Add

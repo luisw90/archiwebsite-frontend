@@ -8,12 +8,12 @@ export const Header: FC<HeaderProps> = ({ createDropdown }) => {
     <>
       <div className="header__container">
         <div>
-          <div className="header__titles">logo</div>
+          <img className="header__logo" src="Archlogo2.png" alt=""></img>
         </div>
         <div className="header__info-container">
-          <div className="header__titles">projects</div>
-          <div className="header__titles">search</div>
-          <div className="header__titles">test</div>
+          <div className="header__titles">projectlist</div>
+          <div className="header__titles">about</div>
+          <div className="header__titles">contact</div>
         </div>
       </div>
       <div className="header__button-container ">
