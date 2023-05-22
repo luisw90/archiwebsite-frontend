@@ -13,5 +13,5 @@ repository, which accesses a MongoDB database.
 ## Design
 I wanted the UI to be interactive and clean. I therefore ensured that editting and adding was simple and without the need to use modals or by taking the user away from the main page.
 
-## Tools & backend
-This is a Next.js project bootstrapped with create-next-app.
+## Tools
+This is a Next.js project
