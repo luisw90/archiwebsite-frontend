@@ -1,6 +1,6 @@
 # Architecture office website 
 
-This is a quick concept website for an architectural office, built with React. TypeScript is used to ensure type-safety.
+This is a quick concept website for an architectural office, built with React. 
 This project is a test of my typescript, react and fullstack skills. It connects to the separate archiwebsite-backend
 repository, which accesses a MongoDB database. 
 
